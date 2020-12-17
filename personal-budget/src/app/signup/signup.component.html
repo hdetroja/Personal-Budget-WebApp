@@ -1,0 +1,16 @@
+  <div *ngIf="!isSignedIn">
+  <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" #emailSignup required/>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" #passwordSignup required/>
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button (click)="onSignup(emailSignup.value,passwordSignup.value)">Sign Up</button>
+    &nbsp;
+    <button type="button" class="cancelbtn">Cancel</button>
+  </div>
+</div>
+<pb-dashboard *ngIf="isSignedIn" (isLogout)="handleLogout()"></pb-dashboard>

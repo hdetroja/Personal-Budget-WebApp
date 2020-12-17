@@ -1,0 +1,42 @@
+<div class="container">
+  <ul *ngFor="let j of may" class="collection">
+    <li class="collection-j"><h6><b>{{j.title}}: </b></h6>{{j.value}} <a
+      class="secondary-content">
+      <i (click)="editMay($event, j)" class="fa fa-pencil la-lg"></i>
+      <i *ngIf="editState && mayToEdit.id == j.id" (click)="clearState()" class="fa fa-compress la-lg"></i>
+    </a>
+
+    <div *ngIf="editState && mayToEdit.id == j.id">
+      <form (ngSubmit)="updateMay(j)">
+        <div class="row">
+          <div class="input-field col s6">
+            <input type="text" placeholder="Add Title" [(ngModel)]="j.title" name = "title">
+          </div>
+          <div class="input-field col s6">
+            <input type="text" placeholder="Add Value" [(ngModel)]="j.value" name = "value">
+          </div>
+          <input type="submit" value="Update" class="btn orange">
+          <button (click)="deleteMay($event, j)" class="btn red">Delete</button>
+        </div>
+        </form>
+    </div>
+  </li>
+  </ul>
+  <div class="row">
+    <div class="column">
+    <canvas id="myChart" width="180" height="250"></canvas>
+  </div>
+  <div class="column">
+    <canvas id="myChart1" width="180" height="250"></canvas>
+  </div>
+  <div class="column">
+    <canvas id="myChart2"  width="180" height="250" chart-options="options"></canvas>
+  </div>
+  </div>
+</div>
+<ng-template #noMay>
+  <hr>
+  <h5>
+    There are no items
+  </h5>
+</ng-template>
