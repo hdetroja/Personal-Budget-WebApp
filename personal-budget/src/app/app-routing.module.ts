@@ -24,10 +24,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path:'**',
-    component: HomepageComponent
-  },
-  {
     path:'login',
     component: LoginComponent
   },

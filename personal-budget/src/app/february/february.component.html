@@ -10,10 +10,10 @@
       <form (ngSubmit)="updateFebruary(j)">
         <div class="row">
           <div class="input-field col s6">
-            <input type="text" placeholder="Add Title" [(ngModel)]="j.title" name = "title">
+            <input type="text" placeholder="Add Title" [(ngModel)]="j.title" name = "title" required>
           </div>
           <div class="input-field col s6">
-            <input type="text" placeholder="Add Value" [(ngModel)]="j.value" name = "value">
+            <input type="text" placeholder="Add Value" [(ngModel)]="j.value" name = "value" required>
           </div>
           <input type="submit" value="Update" class="btn orange">
           <button (click)="deleteFebruary($event, j)" class="btn red">Delete</button>

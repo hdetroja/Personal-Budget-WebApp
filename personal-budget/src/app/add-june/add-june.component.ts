@@ -8,7 +8,7 @@ import { model } from '../model';
   styleUrls: ['./add-june.component.scss']
 })
 export class AddJuneComponent implements OnInit {
-  june: model = {
+  june: model = {uID: localStorage.getItem('userid'),
     title:'',
     value:undefined
   }

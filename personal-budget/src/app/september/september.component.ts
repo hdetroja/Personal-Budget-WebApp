@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SeptemberService } from '../services/september.service';
 import { model } from '../model';
 import { Chart } from 'chart.js';
-
+import { FirebaseService } from '../services/firebase.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'pb-september',
   templateUrl: './september.component.html',
@@ -28,8 +29,11 @@ export class SeptemberComponent implements OnInit {
     fill: false
   } as any
 
-  constructor(private septemberService: SeptemberService) {}
-
+  constructor(private septemberService: SeptemberService,public firebaseService: FirebaseService, public router: Router) {
+    if(!localStorage.getItem('log')){
+      this.router.navigate(['']);
+    }
+   }
   ngOnInit(): void {
     //let september = [this.sep.title,this.sep.value]
     this.septemberService.getSeptember().subscribe(september =>{
@@ -46,7 +50,9 @@ export class SeptemberComponent implements OnInit {
   deleteSeptember(event: any, j: model){
     this.septemberService.deleteSeptember(j);
     this.clearState();
-    location.reload();
+    setTimeout(() => {
+      location.reload();
+    }, 100);
   }
   editSeptember(event: any, j: model){
     this.editState = true;

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AprilService } from '../services/april.service';
 import { model } from '../model';
 import { Chart } from 'chart.js';
-
+import { FirebaseService } from '../services/firebase.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'pb-april',
   templateUrl: './april.component.html',
@@ -28,7 +29,11 @@ export class AprilComponent implements OnInit {
     fill: false
   } as any
 
-  constructor(private aprilService: AprilService) {}
+  constructor(private aprilService: AprilService,public firebaseService: FirebaseService, public router: Router) {
+    if(!localStorage.getItem('log')){
+      this.router.navigate(['']);
+    }
+   }
 
   ngOnInit(): void {
     //let april = [this.apr.title,this.apr.value]
@@ -46,7 +51,9 @@ export class AprilComponent implements OnInit {
   deleteApril(event: any, j: model){
     this.aprilService.deleteApril(j);
     this.clearState();
-    location.reload();
+    setTimeout(() => {
+      location.reload();
+    }, 100);
   }
   editApril(event: any, j: model){
     this.editState = true;

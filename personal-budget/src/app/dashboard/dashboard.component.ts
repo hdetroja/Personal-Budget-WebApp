@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
   @Output() isLogout = new EventEmitter<void>()
   constructor(public firebaseService: FirebaseService, public router: Router) {
+    if(!localStorage.getItem('log')){
+      this.router.navigate(['']);
+    }
    }
   ngOnInit() {
     this.firebaseService.timer = setTimeout(() => {

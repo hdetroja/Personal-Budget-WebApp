@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MarchService } from '../services/march.service';
 import { model } from '../model';
 import { Chart } from 'chart.js';
-
+import { FirebaseService } from '../services/firebase.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'pb-march',
   templateUrl: './march.component.html',
@@ -27,7 +28,11 @@ export class MarchComponent implements OnInit {
     labels: [],
     fill: false
   } as any
-  constructor(private marchService: MarchService) {}
+  constructor(private marchService: MarchService,public firebaseService: FirebaseService, public router: Router) {
+    if(!localStorage.getItem('log')){
+      this.router.navigate(['']);
+    }
+   }
 
   ngOnInit(): void {
     //let march = [this.mar.title,this.mar.value]
@@ -52,7 +57,9 @@ export class MarchComponent implements OnInit {
   deleteMarch(event: any, j: model){
     this.marchService.deleteMarch(j);
     this.clearState();
-    location.reload();
+    setTimeout(() => {
+      location.reload();
+    }, 100);
   }
   editMarch(event: any, j: model){
     this.editState = true;

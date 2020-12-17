@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { OctoberService } from '../services/october.service';
 import { model } from '../model';
 import { Chart } from 'chart.js';
-
+import { FirebaseService } from '../services/firebase.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'pb-october',
   templateUrl: './october.component.html',
@@ -28,7 +29,11 @@ export class OctoberComponent implements OnInit {
     fill: false
   } as any
 
-  constructor(private octoberService: OctoberService) {}
+  constructor(private octoberService: OctoberService,public firebaseService: FirebaseService, public router: Router) {
+    if(!localStorage.getItem('log')){
+      this.router.navigate(['']);
+    }
+   }
 
   ngOnInit(): void {
     //let october = [this.oct.title,this.oct.value]
@@ -46,7 +51,9 @@ export class OctoberComponent implements OnInit {
   deleteOctober(event: any, j: model){
     this.octoberService.deleteOctober(j);
     this.clearState();
-    location.reload();
+    setTimeout(() => {
+      location.reload();
+    }, 100);
   }
   editOctober(event: any, j: model){
     this.editState = true;

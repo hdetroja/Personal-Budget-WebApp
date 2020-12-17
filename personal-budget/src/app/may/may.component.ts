@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MayService } from '../services/may.service';
 import { model } from '../model';
 import { Chart } from 'chart.js';
+import { FirebaseService } from '../services/firebase.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'pb-may',
@@ -28,7 +30,11 @@ export class MayComponent implements OnInit {
     fill: false
   } as any
 
-  constructor(private mayService: MayService) {}
+  constructor(private mayService: MayService,public firebaseService: FirebaseService, public router: Router) {
+    if(!localStorage.getItem('log')){
+      this.router.navigate(['']);
+    }
+   }
 
   ngOnInit(): void {
     //let may = [this.may.title,this.may.value]
@@ -46,7 +52,9 @@ export class MayComponent implements OnInit {
   deleteMay(event: any, j: model){
     this.mayService.deleteMay(j);
     this.clearState();
-    location.reload();
+    setTimeout(() => {
+      location.reload();
+    }, 100);
   }
   editMay(event: any, j: model){
     this.editState = true;

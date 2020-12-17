@@ -9,6 +9,7 @@ import { model } from '../model';
 })
 export class AddMarchComponent implements OnInit {
   march: model = {
+    uID: localStorage.getItem('userid'),
     title:'',
     value:undefined
   }

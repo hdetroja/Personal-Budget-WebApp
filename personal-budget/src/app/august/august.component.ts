@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AugustService } from '../services/august.service';
 import { model } from '../model';
 import { Chart } from 'chart.js';
-
+import { FirebaseService } from '../services/firebase.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'pb-august',
   templateUrl: './august.component.html',
@@ -28,8 +29,11 @@ export class AugustComponent implements OnInit {
     fill: false
   } as any
 
-  constructor(private augustService: AugustService) {}
-
+  constructor(private augustService: AugustService,public firebaseService: FirebaseService, public router: Router) {
+    if(!localStorage.getItem('log')){
+      this.router.navigate(['']);
+    }
+   }
   ngOnInit(): void {
     //let august = [this.aug.title,this.aug.value]
     this.augustService.getAugust().subscribe(august =>{
@@ -46,7 +50,9 @@ export class AugustComponent implements OnInit {
   deleteAugust(event: any, j: model){
     this.augustService.deleteAugust(j);
     this.clearState();
-    location.reload();
+    setTimeout(() => {
+      location.reload();
+    }, 100);
   }
   editAugust(event: any, j: model){
     this.editState = true;

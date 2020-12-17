@@ -8,7 +8,7 @@ import { model } from '../model';
   styleUrls: ['./add-may.component.scss']
 })
 export class AddMayComponent implements OnInit {
-  may: model = {
+  may: model = {uID: localStorage.getItem('userid'),
     title:'',
     value:undefined
   }

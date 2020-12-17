@@ -8,7 +8,7 @@ import { model } from '../model';
   styleUrls: ['./add-april.component.scss']
 })
 export class AddAprilComponent implements OnInit {
-  april: model = {
+  april: model = {uID: localStorage.getItem('userid'),
     title:'',
     value:undefined
   }

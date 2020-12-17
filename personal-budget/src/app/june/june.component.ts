@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { JuneService } from '../services/june.service';
 import { model } from '../model';
 import { Chart } from 'chart.js';
-
+import { FirebaseService } from '../services/firebase.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'pb-june',
@@ -29,7 +30,11 @@ export class JuneComponent implements OnInit {
     fill: false
   } as any
 
-  constructor(private juneService: JuneService) {}
+  constructor(private juneService: JuneService,public firebaseService: FirebaseService, public router: Router) {
+    if(!localStorage.getItem('log')){
+      this.router.navigate(['']);
+    }
+   }
 
   ngOnInit(): void {
     //let june = [this.jun.title,this.jun.value]
@@ -47,7 +52,9 @@ export class JuneComponent implements OnInit {
   deleteJune(event: any, j: model){
     this.juneService.deleteJune(j);
     this.clearState();
-    location.reload();
+    setTimeout(() => {
+      location.reload();
+    }, 100);
   }
   editJune(event: any, j: model){
     this.editState = true;
