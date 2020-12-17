@@ -36,10 +36,18 @@ export class AprilComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    let curruser: model[]=[];
     //let april = [this.apr.title,this.apr.value]
     this.aprilService.getApril().subscribe(april =>{
       //console.log(april);
       this.april = april;
+      for(let i=0;i<this.april.length;i++){
+        if (this.april[i]['uID']==localStorage.getItem('userid')){
+          curruser.push(this.april[i])
+        }
+      }
+      this.april = curruser;
+      curruser=[];
       this.getBudget();
     setTimeout(() => {
       this.createPie();

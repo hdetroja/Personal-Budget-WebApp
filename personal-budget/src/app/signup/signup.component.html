@@ -12,5 +12,10 @@
     &nbsp;
     <button type="button" class="cancelbtn">Cancel</button>
   </div>
+  <div class="container">
+    <p *ngIf="error.message.length > 0">
+      {{error.message}}
+    </p>
+  </div>
 </div>
 <pb-dashboard *ngIf="isSignedIn" (isLogout)="handleLogout()"></pb-dashboard>

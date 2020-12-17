@@ -38,9 +38,17 @@ export class JuneComponent implements OnInit {
 
   ngOnInit(): void {
     //let june = [this.jun.title,this.jun.value]
+    let curruser: model[]=[];
     this.juneService.getJune().subscribe(june =>{
       //console.log(june);
       this.june = june;
+      for(let i=0;i<this.june.length;i++){
+        if (this.june[i]['uID']==localStorage.getItem('userid')){
+          curruser.push(this.june[i])
+        }
+      }
+      this.june = curruser;
+      curruser=[];
       this.getBudget();
     setTimeout(() => {
       this.createPie();

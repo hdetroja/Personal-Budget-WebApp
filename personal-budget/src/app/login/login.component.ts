@@ -9,6 +9,7 @@ import { FirebaseService } from '../services/firebase.service';
 })
 export class LoginComponent implements OnInit {
   isSignedIn = false
+  error = {name: '', message: ''};
   constructor(public firebaseService: FirebaseService, public router: Router) {
   }
 
@@ -25,8 +26,10 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/dashboard'])
   }
     else
+    {this.error = this.firebaseService.error
+      //console.log(this.error);
     this.router.navigate(['/login'])
-
+    }
 }
 handleLogout(){
   this.isSignedIn = false

@@ -35,10 +35,18 @@ export class MarchComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    let curruser: model[]=[];
     //let march = [this.mar.title,this.mar.value]
     this.marchService.getMarch().subscribe(march =>{
       //console.log(march);
       this.march = march;
+      for(let i=0;i<this.march.length;i++){
+        if (this.march[i]['uID']==localStorage.getItem('userid')){
+          curruser.push(this.march[i])
+        }
+      }
+      this.march = curruser;
+      curruser=[];
       this.getBudget();
     setTimeout(() => {
       this.createPie();

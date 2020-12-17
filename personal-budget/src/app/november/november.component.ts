@@ -37,9 +37,17 @@ export class NovemberComponent implements OnInit {
 
   ngOnInit(): void {
     //let november = [this.nov.title,this.nov.value]
+    let curruser: model[]=[];
     this.novemberService.getNovember().subscribe(november =>{
       //console.log(november);
       this.november = november;
+      for(let i=0;i<this.november.length;i++){
+        if (this.november[i]['uID']==localStorage.getItem('userid')){
+          curruser.push(this.november[i])
+        }
+      }
+      this.november = curruser;
+      curruser=[];
       this.getBudget();
     setTimeout(() => {
       this.createPie();

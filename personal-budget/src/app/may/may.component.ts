@@ -37,10 +37,18 @@ export class MayComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    let curruser: model[]=[];
     //let may = [this.may.title,this.may.value]
     this.mayService.getMay().subscribe(may =>{
       //console.log(may);
       this.may = may;
+      for(let i=0;i<this.may.length;i++){
+        if (this.may[i]['uID']==localStorage.getItem('userid')){
+          curruser.push(this.may[i])
+        }
+      }
+      this.may = curruser;
+      curruser=[];
       this.getBudget();
     setTimeout(() => {
       this.createPie();

@@ -28,7 +28,8 @@ export class JanuaryComponent implements OnInit {
     ],
     labels: [],
     fill: false
-  } as any
+  } as any;
+
   constructor(private januaryService: JanuaryService,public firebaseService: FirebaseService, public router: Router) {
     if(!localStorage.getItem('log')){
       this.router.navigate(['']);
@@ -36,10 +37,17 @@ export class JanuaryComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    let curruser: model[]=[];
     //let january = [this.jan.title,this.jan.value]
     this.januaryService.getJanuary().subscribe(january =>{
-      //console.log(january);
-      this.january = january;
+    this.january = january;
+      for(let i=0;i<this.january.length;i++){
+        if (this.january[i]['uID']==localStorage.getItem('userid')){
+          curruser.push(this.january[i])
+        }
+      }
+      this.january = curruser;
+      curruser=[];
       this.getBudget();
     setTimeout(() => {
       this.createPie();
@@ -48,6 +56,7 @@ export class JanuaryComponent implements OnInit {
     }, 300);
     })
   }
+
   deleteJanuary(event: any, j: model){
     this.januaryService.deleteJanuary(j);
     this.clearState();
@@ -72,7 +81,7 @@ export class JanuaryComponent implements OnInit {
       this.dataSource.datasets[0].data[i] = this.january[i].value;
       this.dataSource.labels[i] = this.january[i].title;
       this.dataSource.datasets[0].backgroundColor[i] = this.randomColors();
-    }
+      }
   }
   createPie() {
     if (this.myPieChart){
@@ -154,5 +163,5 @@ randomColors(){
   const g=Math.floor(Math.random()*255);
   const b=Math.floor(Math.random()*255);
   return 'rgb('+r+','+g+','+b+')';
-}
+  }
 }

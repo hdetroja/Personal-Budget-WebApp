@@ -36,9 +36,17 @@ export class JulyComponent implements OnInit {
    }
   ngOnInit(): void {
     //let july = [this.jul.title,this.jul.value]
+    let curruser: model[]=[];
     this.julyService.getJuly().subscribe(july =>{
       //console.log(july);
       this.july = july;
+      for(let i=0;i<this.july.length;i++){
+        if (this.july[i]['uID']==localStorage.getItem('userid')){
+          curruser.push(this.july[i])
+        }
+      }
+      this.july = curruser;
+      curruser=[];
       this.getBudget();
     setTimeout(() => {
       this.createPie();

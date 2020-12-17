@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
 
   isSignedIn = false
+  error = {name: '', message: ''};
   constructor(public firebaseService: FirebaseService, public router: Router) { }
 
   ngOnInit() {
@@ -23,8 +24,11 @@ export class SignupComponent implements OnInit {
     this.isSignedIn = true
     this.router.navigate(['/dashboard'])
   }
-    else
-    this.router.navigate(['/signup'])
+    else{
+      this.error = this.firebaseService.error
+      console.log(this.error);
+      this.router.navigate(['/signup'])
+    }
   }
   handleLogout(){
     this.isSignedIn = false
