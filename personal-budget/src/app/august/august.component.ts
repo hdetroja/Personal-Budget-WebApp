@@ -46,6 +46,7 @@ export class AugustComponent implements OnInit {
   deleteAugust(event: any, j: model){
     this.augustService.deleteAugust(j);
     this.clearState();
+    location.reload();
   }
   editAugust(event: any, j: model){
     this.editState = true;
@@ -57,6 +58,7 @@ export class AugustComponent implements OnInit {
   updateAugust(j: model){
     this.augustService.updateAugust(j);
     this.clearState();
+    location.reload();
   }
   getBudget(){
     for (let i = 0; i < this.august.length; i++){
@@ -86,7 +88,22 @@ export class AugustComponent implements OnInit {
           options: {
             legend: {
               display: false
-            }
+            },
+            scales: {
+              xAxes: [
+                {
+                stacked: true
+                }
+              ],
+              yAxes: [
+                {
+                  id: 'y-axis-1',
+                  type: 'linear',
+                  stacked: true,
+                  position: 'left'
+                }
+              ]
+            },
           }
       });
     }

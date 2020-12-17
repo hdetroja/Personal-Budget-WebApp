@@ -46,6 +46,7 @@ export class JulyComponent implements OnInit {
   deleteJuly(event: any, j: model){
     this.julyService.deleteJuly(j);
     this.clearState();
+    location.reload();
   }
   editJuly(event: any, j: model){
     this.editState = true;
@@ -57,6 +58,7 @@ export class JulyComponent implements OnInit {
   updateJuly(j: model){
     this.julyService.updateJuly(j);
     this.clearState();
+    location.reload();
   }
   getBudget(){
     for (let i = 0; i < this.july.length; i++){
@@ -86,7 +88,22 @@ export class JulyComponent implements OnInit {
           options: {
             legend: {
               display: false
-            }
+            },
+            scales: {
+              xAxes: [
+                {
+                stacked: true
+                }
+              ],
+              yAxes: [
+                {
+                  id: 'y-axis-1',
+                  type: 'linear',
+                  stacked: true,
+                  position: 'left'
+                }
+              ]
+            },
           }
       });
     }
@@ -103,11 +120,14 @@ export class JulyComponent implements OnInit {
                 display: false
               },
               scales: {
+                xAxes: [{
+                  stacked: true
+                }],
                 yAxes: [
                   {
                     id: 'y-axis-1',
                     type: 'linear',
-                    display: true,
+                    stacked: true,
                     position: 'left'
                   }
                 ]

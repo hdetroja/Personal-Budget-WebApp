@@ -46,6 +46,7 @@ export class SeptemberComponent implements OnInit {
   deleteSeptember(event: any, j: model){
     this.septemberService.deleteSeptember(j);
     this.clearState();
+    location.reload();
   }
   editSeptember(event: any, j: model){
     this.editState = true;
@@ -57,6 +58,7 @@ export class SeptemberComponent implements OnInit {
   updateSeptember(j: model){
     this.septemberService.updateSeptember(j);
     this.clearState();
+    location.reload();
   }
   getBudget(){
     for (let i = 0; i < this.september.length; i++){
@@ -86,7 +88,22 @@ export class SeptemberComponent implements OnInit {
           options: {
             legend: {
               display: false
-            }
+            },
+            scales: {
+              xAxes: [
+                {
+                stacked: true
+                }
+              ],
+              yAxes: [
+                {
+                  id: 'y-axis-1',
+                  type: 'linear',
+                  stacked: true,
+                  position: 'left'
+                }
+              ]
+            },
           }
       });
     }
@@ -103,11 +120,14 @@ export class SeptemberComponent implements OnInit {
                 display: false
               },
               scales: {
+                xAxes: [{
+                  stacked: true
+                }],
                 yAxes: [
                   {
                     id: 'y-axis-1',
                     type: 'linear',
-                    display: true,
+                    stacked: true,
                     position: 'left'
                   }
                 ]

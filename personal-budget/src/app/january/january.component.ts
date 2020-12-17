@@ -57,6 +57,7 @@ export class JanuaryComponent implements OnInit {
   updateJanuary(j: model){
     this.januaryService.updateJanuary(j);
     this.clearState();
+    location.reload();
   }
   getBudget(){
     for (let i = 0; i < this.january.length; i++){
@@ -86,7 +87,22 @@ export class JanuaryComponent implements OnInit {
           options: {
             legend: {
               display: false
-            }
+            },
+            scales: {
+              xAxes: [
+                {
+                stacked: true
+                }
+              ],
+              yAxes: [
+                {
+                  id: 'y-axis-1',
+                  type: 'linear',
+                  stacked: true,
+                  position: 'left'
+                }
+              ]
+            },
           }
       });
     }
@@ -103,11 +119,16 @@ export class JanuaryComponent implements OnInit {
                 display: false
               },
               scales: {
+                xAxes: [
+                  {
+                  stacked: true
+                  }
+                ],
                 yAxes: [
                   {
                     id: 'y-axis-1',
                     type: 'linear',
-                    display: true,
+                    stacked: true,
                     position: 'left'
                   }
                 ]

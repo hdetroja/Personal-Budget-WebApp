@@ -4,7 +4,6 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { JanuaryComponent } from './january/january.component';
 import { AddJanuaryComponent } from './add-january/add-january.component';
 import { AddFebruaryComponent } from './add-february/add-february.component';
 import { AddMarchComponent } from './add-march/add-march.component';
@@ -23,6 +22,10 @@ const routes: Routes = [
     path:'',
     component: HomepageComponent,
     pathMatch: 'full'
+  },
+  {
+    path:'**',
+    component: HomepageComponent
   },
   {
     path:'login',

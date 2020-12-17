@@ -45,6 +45,7 @@ export class DecemberComponent implements OnInit {
   deleteDecember(event: any, j: model){
     this.decemberService.deleteDecember(j);
     this.clearState();
+    location.reload();
   }
   editDecember(event: any, j: model){
     this.editState = true;
@@ -56,6 +57,7 @@ export class DecemberComponent implements OnInit {
   updateDecember(j: model){
     this.decemberService.updateDecember(j);
     this.clearState();
+    location.reload();
   }
   getBudget(){
     for (let i = 0; i < this.december.length; i++){
@@ -85,7 +87,22 @@ export class DecemberComponent implements OnInit {
           options: {
             legend: {
               display: false
-            }
+            },
+            scales: {
+              xAxes: [
+                {
+                stacked: true
+                }
+              ],
+              yAxes: [
+                {
+                  id: 'y-axis-1',
+                  type: 'linear',
+                  stacked: true,
+                  position: 'left'
+                }
+              ]
+            },
           }
       });
     }
@@ -102,11 +119,14 @@ export class DecemberComponent implements OnInit {
                 display: false
               },
               scales: {
+                xAxes: [{
+                  stacked: true
+                }],
                 yAxes: [
                   {
                     id: 'y-axis-1',
                     type: 'linear',
-                    display: true,
+                    stacked: true,
                     position: 'left'
                   }
                 ]

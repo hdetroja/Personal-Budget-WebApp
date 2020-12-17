@@ -12,8 +12,8 @@ export class DashboardComponent implements OnInit {
   constructor(public firebaseService: FirebaseService, public router: Router) {
    }
   ngOnInit() {
-    setTimeout(() => {
-      if (confirm('Click OK to be logged in')){
+    this.firebaseService.timer = setTimeout(() => {
+      if (confirm('Click OK to be logged in or Click Cancel to be logged out in 20 sec')){
         location.reload();
       }
       else{

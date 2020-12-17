@@ -52,6 +52,7 @@ export class FebruaryComponent implements OnInit {
   deleteFebruary(event: any, j: model){
     this.februaryService.deleteFebruary(j);
     this.clearState();
+    location.reload();
   }
   editFebruary(event: any, j: model){
     this.editState = true;
@@ -63,6 +64,7 @@ export class FebruaryComponent implements OnInit {
   updateFebruary(j: model){
     this.februaryService.updateFebruary(j);
     this.clearState();
+    location.reload();
   }
   createPie() {
     if (this.myPieChart){
@@ -85,7 +87,22 @@ export class FebruaryComponent implements OnInit {
           options: {
             legend: {
               display: false
-            }
+            },
+            scales: {
+              xAxes: [
+                {
+                stacked: true
+                }
+              ],
+              yAxes: [
+                {
+                  id: 'y-axis-1',
+                  type: 'linear',
+                  stacked: true,
+                  position: 'left'
+                }
+              ]
+            },
           }
       });
     }
@@ -102,11 +119,14 @@ export class FebruaryComponent implements OnInit {
                 display: false
               },
               scales: {
+                xAxes: [{
+                  stacked:true
+                }],
                 yAxes: [
                   {
                     id: 'y-axis-1',
                     type: 'linear',
-                    display: true,
+                    stacked: true,
                     position: 'left'
                   }
                 ]

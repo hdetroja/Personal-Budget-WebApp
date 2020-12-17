@@ -17,8 +17,11 @@ export class MenuComponent implements OnInit {
     this.isSignedIn = false
   }
   logout(){
+    clearTimeout(this.firebaseService.timer)
+    if (localStorage.getItem('user')!==null){
     this.firebaseService.logout()
     this.isLogout.emit()
     this.router.navigate([''])
+    }
 }
 }

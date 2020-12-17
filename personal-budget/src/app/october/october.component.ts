@@ -46,6 +46,7 @@ export class OctoberComponent implements OnInit {
   deleteOctober(event: any, j: model){
     this.octoberService.deleteOctober(j);
     this.clearState();
+    location.reload();
   }
   editOctober(event: any, j: model){
     this.editState = true;
@@ -57,6 +58,7 @@ export class OctoberComponent implements OnInit {
   updateOctober(j: model){
     this.octoberService.updateOctober(j);
     this.clearState();
+    location.reload();
   }
   getBudget(){
     for (let i = 0; i < this.october.length; i++){
@@ -86,7 +88,22 @@ export class OctoberComponent implements OnInit {
           options: {
             legend: {
               display: false
-            }
+            },
+            scales: {
+              xAxes: [
+                {
+                stacked: true
+                }
+              ],
+              yAxes: [
+                {
+                  id: 'y-axis-1',
+                  type: 'linear',
+                  stacked: true,
+                  position: 'left'
+                }
+              ]
+            },
           }
       });
     }
@@ -103,11 +120,15 @@ export class OctoberComponent implements OnInit {
                 display: false
               },
               scales: {
+                xAxes: [{
+                  stacked: true
+                }
+                ],
                 yAxes: [
                   {
                     id: 'y-axis-1',
                     type: 'linear',
-                    display: true,
+                    stacked: true,
                     position: 'left'
                   }
                 ]

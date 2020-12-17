@@ -46,6 +46,7 @@ export class AprilComponent implements OnInit {
   deleteApril(event: any, j: model){
     this.aprilService.deleteApril(j);
     this.clearState();
+    location.reload();
   }
   editApril(event: any, j: model){
     this.editState = true;
@@ -57,6 +58,7 @@ export class AprilComponent implements OnInit {
   updateApril(j: model){
     this.aprilService.updateApril(j);
     this.clearState();
+    location.reload();
   }
   getBudget(){
     for (let i = 0; i < this.april.length; i++){
@@ -86,7 +88,22 @@ export class AprilComponent implements OnInit {
           options: {
             legend: {
               display: false
-            }
+            },
+            scales: {
+              xAxes: [
+                {
+                stacked: true
+                }
+              ],
+              yAxes: [
+                {
+                  id: 'y-axis-1',
+                  type: 'linear',
+                  stacked: true,
+                  position: 'left'
+                }
+              ]
+            },
           }
       });
     }
@@ -103,11 +120,14 @@ export class AprilComponent implements OnInit {
                 display: false
               },
               scales: {
+                xAxes: [{
+                  stacked: true
+                }],
                 yAxes: [
                   {
                     id: 'y-axis-1',
                     type: 'linear',
-                    display: true,
+                    stacked: true,
                     position: 'left'
                   }
                 ]
