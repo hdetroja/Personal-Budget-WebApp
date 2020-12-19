@@ -8,11 +8,15 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', async () => {
+  it('should display Home', async () => {
     await page.navigateTo();
-    expect(await page.getTitleText()).toEqual('personal-budget app is running!');
+    expect(await page.getTitleText()).toEqual('Home');
   });
-
+  it('should click', async () => {
+    page.navigateTo();
+    page.getClick().click();
+    expect(page.getClick().getText());
+  });
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);

@@ -6,6 +6,9 @@ export class AppPage {
   }
 
   async getTitleText(): Promise<string> {
-    return element(by.css('pb-root .content span')).getText();
+    return element(by.css('pb-menu a')).getText();
+  }
+  getClick() {
+    return element(by.partialLinkText('Dashboard'));
   }
 }
