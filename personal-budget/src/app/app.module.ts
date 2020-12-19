@@ -75,13 +75,13 @@ import { AddDecemberComponent } from './add-december/add-december.component';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp({
-      apiKey: "AIzaSyCh7QoBIf4UAGeWyRv-Vij9G5xjAw5qJxU",
-      authDomain: "personal-budget-d8165.firebaseapp.com",
-      databaseURL: 'https://personal-budget-d8165-default-rtdb.firebaseio.com/',
-      projectId: "personal-budget-d8165",
-      storageBucket: "personal-budget-d8165.appspot.com",
-      messagingSenderId: "948519437366",
-      appId: "1:948519437366:web:eb2bebecbf480ae1390497"
+      apiKey: "xxxxx",
+      authDomain: "xxxx",
+      databaseURL: 'xxxx',
+      projectId: "xxxx",
+      storageBucket: "xxx",
+      messagingSenderId: "xxxx",
+      appId: "xxx"
     }),
     FormsModule
   ],
